@@ -7,7 +7,6 @@ router.get('/', function (req, res, next) {
 
     db.query("select * from test2", function (err, rows) {
         if (err) {
-            console.log(err);
             res.render('index', {title: 'Express', users: []});
         } else {
             res.render('index', {title: 'Express', users: rows});
@@ -36,7 +35,6 @@ router.get("/del/:id", function (req, res) {
 router.get("/toUpdate/:id", function (req, res) {
     var id = req.params.id;
     db.query("select * from test2 where id=" + id, function (err, rows) {
-        console.log(rows);
         if (err) {
             res.end("修改页面跳转失败：" + err);
         } else {
@@ -55,7 +53,6 @@ router.post("/update",function(req,res){
      var sex = req.body.sex;
 
     db.query("update test2 set name='"+name+"',age="+age+",sex='"+sex+"' where id=" + id, function (err, rows) {
-        console.log(rows);
         if (err) {
             res.end("修改失败：" + err);
         } else {
@@ -80,7 +77,6 @@ router.post("/add",function(req,res){
     var sex = req.body.sex;
 
     db.query("insert into test2(name,sex,age) values('"+name+"','"+sex+"',"+age+")", function (err, rows) {
-        console.log(rows);
         if (err) {
             res.end("新增失败：" + err);
         } else {
@@ -98,7 +94,7 @@ router.post("/search",function(req,res){
 
     var sql = "select * from test2";
     if(name){
-        sql += " and name='"+name+"' ";
+        sql += " and name like "+"'"+"%"+name+"%"+"'";
     }
     if(sex){
         sql += " and sex='"+sex+"' ";
@@ -107,7 +103,6 @@ router.post("/search",function(req,res){
     sql = sql.replace(/and/,"where");
 
     db.query(sql, function (err, rows) {
-        console.log(rows);
         if (err) {
             res.end("查询失败：" + err);
         } else {
