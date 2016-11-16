@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form action="/update" method="post">
+        <input type="hidden" value="{{users[0].id}}" name="id">
+        姓名：<input type="text" id="name" value="{{users[0].name}}" name="name"><br>
+        性别：<input type="text" id="sex" value="{{users[0].sex}}" name="sex"><br>
+        年龄：<input type="text" id="age" value="{{users[0].age}}" name="age"><br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
