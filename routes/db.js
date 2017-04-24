@@ -1,13 +1,13 @@
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by Administrator on 2017-02-14.
  */
 // 连接MySql
 var mysql = require('mysql');
 var pool  = mysql.createPool({
-    host     : '192.168.20.132',
-    user     : 'root',
-    password : 'root',
-    database:"test"
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'crud'
 });
 
 function query(sql,callback){
